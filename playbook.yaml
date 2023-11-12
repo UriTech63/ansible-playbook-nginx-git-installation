@@ -1,0 +1,36 @@
+---
+- name: first-play
+  hosts: all
+  tasks:
+    - name: ping servers
+      ping:
+
+- name: apt-module
+  hosts: prod
+  tasks: 
+    - name: install nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+- name: install git
+  hosts: all
+  tasks: 
+    - name: GIT INSTALLATION
+      apt:
+        name: git
+        state: present
+
+- name: create a directory for the projects
+  hosts: dev
+  tasks: 
+    - name: create a folder or directory
+      ansible.builtin.file:
+        path: /home/ubuntu/test-folder
+        state: directory
+
+    - name: create a file
+      file:
+        path: /home/ubuntu/test-folder/uriel
+        state: touch
